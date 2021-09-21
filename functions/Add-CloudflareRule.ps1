@@ -95,6 +95,10 @@ if (($RepeatNewRule -eq "N") -or ($RepeatNewRule -eq "n")) {
     }
     
     if (($SaveAndApply -eq "Y") -or ($SaveAndApply -eq "y")) {
+        $BackupDirectory = Test-Path C:\Cloudflared\backups
+        if(!$BackupDirectory){
+            New-Item -Path "c:\cloudflared\" -Name "backups" -ItemType "directory"
+        }
         $BackupDate = Get-Date -Format "MMddyyyyHHmm"
         Write-Host "Backuping config to C:\Cloudflare\backups\$($BackupDate).yml" -ForegroundColor Green
         Copy-Item -Path C:\Cloudflared\config.yml -Destination "C:\Cloudflare\backups\$($BackupDate).yml"
