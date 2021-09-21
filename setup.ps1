@@ -12,23 +12,23 @@ do {
 switch ($choice) {
     '1' {
         Write-Host "`nStarting initial setup script."
-        powershell [-noexit] -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Install-Cloudflare.ps1
+        powershell -noexit -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Install-Cloudflare.ps1
     }
     '2' {
         Write-Host "`nStarting service install."
-        powershell [-noexit] -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Install-Service.ps1
+        powershell -noexit -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Install-Service.ps1
     }
     '3' {
         Write-Host "`nStarting service update."
-        powershell [-noexit] -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Update-Cloudflare.ps1
+        powershell -noexit -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Update-Cloudflare.ps1
     }
     '4' {
         Write-Host "`nStarting service removal.."
-        powershell [-noexit] -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Remove-Service.ps1
+        powershell -noexit -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Remove-Service.ps1
     }
     '5' {
         Write-Host "`nStarting rule addition."
-        powershell [-noexit] -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Add-CloudflareRule.ps1
+        powershell -noexit -nologo -executionpolicy bypass -File C:\Cloudflared\functions\Add-CloudflareRule.ps1
     }
     'Q' {
         Return
