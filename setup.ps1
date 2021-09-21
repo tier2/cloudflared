@@ -1,3 +1,6 @@
+#requires -version 4.0
+#requires -RunAsAdministrator
+
 do {
     Write-Host "`n============= Cloudflare Setup =========================" -ForegroundColor Yellow
     Write-Host "`t1. Run the Cloudflare initial setup." -ForegroundColor Green

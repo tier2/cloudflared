@@ -42,7 +42,20 @@ while (($RepeatNewRule -ne "N") -or ( $RepeatNewRule -ne "n")) {
     
     }
     if (($AddNewRule -eq "Y") -or ($AddNewRule -eq "y")) {
-        $Hostname = Read-Host -Prompt "What is the public hostname that will be used for accessing the service?"
+        do {
+            $GenerateHostname = Read-Host "Would you like to generate a random hostname? Y\N (Recommended for non-public resources)"
+        }until(($GenerateHostname -eq "Y") -or ($GenerateHostname -eq "y") -or ($GenerateHostname -eq "N") -or ($GenerateHostname -eq "n"))
+        
+        if (($GenerateHostname -eq "Y") -or ($GenerateHostname -eq "y")) {
+            $domain = Read-Host "Enter the domain registered in Cloudflare"
+            $uuid = New-Guid
+            $Hostname = "$($uuid).$($domain)"
+        }
+        else {
+            $Hostname = Read-Host -Prompt "What is the public hostname that will be used for accessing the service?"
+        }
+
+        
         $ServiceType = Read-Host -Prompt "What service will be used? e.g http, https, ssh, rdp"
         $LocalService = Read-Host -Prompt "What is the local IP address or hostname of the service?"
         $LocalPort = Read-Host -Prompt "What is the port of the local service?"
