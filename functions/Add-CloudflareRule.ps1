@@ -100,10 +100,10 @@ if (($RepeatNewRule -eq "N") -or ($RepeatNewRule -eq "n")) {
             New-Item -Path "c:\cloudflared\" -Name "backups" -ItemType "directory"
         }
         $BackupDate = Get-Date -Format "MMddyyyyHHmm"
-        Write-Host "Backuping config to C:\Cloudflared\backups\$($BackupDate).yml" -ForegroundColor Green
+        Write-Host "Backuping config to C:\Cloudflared\backups\config_backup_$($BackupDate).yml" -ForegroundColor Green
         Copy-Item -Path C:\Cloudflared\config.yml -Destination "C:\Cloudflared\backups\$($BackupDate).yml"
         Write-Host "Saving config to C:\Clouflared\config.yml" -ForegroundColor Green
-        $YamlOutput > C:\Cloudflare\config.yml
+        $YamlOutput > C:\Cloudflared\config.yml
         Write-Host "Restarting Cloudflare Tunnel Service" -ForegroundColor Yellow
         Restart-Service -name "cloudflared"
         Write-Host "Add the following records to the Cloudflare DNS Portal:" -ForegroundColor Yellow
