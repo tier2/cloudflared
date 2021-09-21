@@ -1,0 +1,10 @@
+tunnel: TUNNELNAME
+credentials-file: C:\Users\USERNAME\.cloudflared\PID.json
+logfile: cloudflare.log
+originRequest:
+  noTLSVerify: true
+
+ingress:
+  - hostname: HOSTNAME
+    service: http://127.0.0.1:80
+  - service: http_status:404
