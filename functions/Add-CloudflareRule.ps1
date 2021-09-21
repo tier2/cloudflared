@@ -66,8 +66,8 @@ while (($RepeatNewRule -ne "N") -or ( $RepeatNewRule -ne "n")) {
 
         if ($CheckDefinedService) {
             $AddToYaml = @{
-                service  = $DefinedService
                 hostname = $Hostname
+                service  = $DefinedService
             }
 
             $yaml.ingress = @($AddToYaml) + $yaml.ingress
