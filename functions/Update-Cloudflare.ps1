@@ -2,6 +2,6 @@
 #requires -RunAsAdministrator
 
 taskkill -f -im cloudflared.exe
-C:\Cloudflared\bin\cloudflared.exe service uninstall
+C:\Cloudflared\cloudflared\bin\cloudflared.exe service uninstall
 .\cloudflared.exe update
-C:\Cloudflared\bin\cloudflared.exe service install
+C:\Cloudflared\cloudflared\bin\cloudflared.exe service install
