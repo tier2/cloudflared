@@ -2,6 +2,7 @@
 #requires -RunAsAdministrator
 $Service = Get-Service cloudflared  -erroraction "silentlycontinue"
 if($service){
+    taskkill -f -im cloudflared.exe
     C:\Cloudflared\cloudflared\bin\cloudflared.exe service uninstall
 }
 $Service = Get-Service cloudflared -erroraction "silentlycontinue"
@@ -9,7 +10,6 @@ do{
     Write-host "Waiting for service to finish uninstalling..." -ForegroundColor Yellow
     $Service = Get-Service cloudflared -erroraction "silentlycontinue"
     Start-Sleep -Seconds 1
-    taskkill -f -im cloudflared.exe
 }until(!$service)
 C:\Cloudflared\cloudflared\bin\cloudflared.exe update
 Start-Sleep -Seconds 4
