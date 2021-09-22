@@ -100,6 +100,7 @@ else {
         originRequest      = @{
             noTLSVerify = $true
         }
+        logfile = "C:\logs\cloudflared.log"
 
     } | ConvertTo-Yaml | Out-File "C:\Cloudflared\config.yml"
 
