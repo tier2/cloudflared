@@ -1,4 +1,4 @@
-### Cloudflared Submodules for Cloudflare Tunnel
+### Cloudflared Submodules for Cloudflare Tunnel - For Windows
 
 Run setup.ps1 to start, follow the prompts!
 

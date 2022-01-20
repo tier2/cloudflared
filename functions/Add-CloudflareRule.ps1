@@ -4,11 +4,27 @@ Install-Module powershell-yaml
 Install-Module -Name "PSWriteColor"
 Import-Module powershell-yaml
 Import-Module -Name "PSWriteColor"
+Import-Module -
 
+$Path = Get-Location
+# Test for existing config.yml or config.yaml file
 $ConfigFile = Test-Path -Path C:\Cloudflared\config.yml
 if (!$ConfigFile) {
     Write-Color "Could not find config file at C:\Cloudflared\config.yml, please check it exists." -Color Red
     Break
+}
+
+function Test-ConfigFileExists ($Path) {
+    $files = @("config.yml", "config.yaml")
+
+    foreach ($file in $files) {
+        $Test = Test-Path -Path "${$Path}/${files}"
+
+        if ($Test) {
+            return $True
+        }
+    }
+    return $False
 }
 $RawConfigFile = Get-Content -Path C:\Cloudflared\config.yml -Raw
 # $RawConfigFile = Get-Content -Path config.yml -Raw
@@ -96,7 +112,7 @@ if (($RepeatNewRule -eq "N") -or ($RepeatNewRule -eq "n")) {
     
     if (($SaveAndApply -eq "Y") -or ($SaveAndApply -eq "y")) {
         $BackupDirectory = Test-Path C:\Cloudflared\backups
-        if(!$BackupDirectory){
+        if (!$BackupDirectory) {
             New-Item -Path "c:\cloudflared\" -Name "backups" -ItemType "directory"
         }
         $BackupDate = Get-Date -Format "MMddyyyyHHmm"
@@ -111,7 +127,12 @@ if (($RepeatNewRule -eq "N") -or ($RepeatNewRule -eq "n")) {
         Write-Host "Name: $($Hostname)"  -ForegroundColor Yellow
         Write-Host "Target: $($yaml.tunnel).cfargotunnel.com"  -ForegroundColor Yellow
         Write-Host "Proxied: YES"  -ForegroundColor Yellow
+        Write-Host "Updating repos..." -ForegroundColor Green
+        git add .
+        git commit -m "Added rule: $($DefinedService)"
+        git push
         Write-Host "All done, exiting..."  -ForegroundColor Yellow
+     
     }
 
 
